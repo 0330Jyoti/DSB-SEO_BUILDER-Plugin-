@@ -27,4 +27,4 @@ if (isset($xsl) && !empty($xsl))
 /**
  * Build the root sitemap (example.com/seo_generator_sitemap_index.xml) which lists sub-sitemaps
  */
-nsg_build_root_map();
+dsb_build_root_map();
