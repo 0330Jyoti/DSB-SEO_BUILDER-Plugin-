@@ -49,13 +49,13 @@ class DSB_Meta_Field
 
 		// https://wordpress.stackexchange.com/questions/114719/editor-role-cannot-save-custom-theme-options
 		// Give user role = Editor the permission to save fields added to the Settings page
-		add_filter('option_page_capability_nsg', array($this, 'nsg_map_options_capability'));
+		add_filter('option_page_capability_dsb', array($this, 'dsb_map_options_capability'));
 	}
 
 	/**
 	 * Give user role = Editor the permission to save fields added to the Settings page
 	 */
-	public function nsg_map_options_capability($cap)
+	public function dsb_map_options_capability($cap)
 	{
 		return 'edit_pages';
 	}
@@ -82,7 +82,7 @@ class DSB_Meta_Field
         $value      = null;
         $field_id   = $this->get_id();
 		
-        if(isset($_POST[$field_id]) && !nsg_is_empty($_POST[$field_id]))
+        if(isset($_POST[$field_id]) && !dsb_is_empty($_POST[$field_id]))
 		{
             $value = $this->sanitize_value($_POST[$field_id]);
             
@@ -148,7 +148,7 @@ class DSB_Meta_Field
 			$value      = get_post_meta($post_id, $this->get_id(), true);
 		}
 
-		if (isset($this->args['default']) && nsg_is_empty($value) && !metadata_exists('post', $post_id, $this->get_id()))
+		if (isset($this->args['default']) && dsb_is_empty($value) && !metadata_exists('post', $post_id, $this->get_id()))
 		{
 			$value = $this->args['default'];
 		}
