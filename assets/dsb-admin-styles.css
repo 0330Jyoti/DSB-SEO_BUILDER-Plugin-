@@ -97,7 +97,6 @@ label.dsb-label {
 ******************************************************************/
 
 .dsb-meta-box .dsb-tabs {
-	/* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
 	position: relative;
 	width: 100%;
 }

@@ -1,15 +1,10 @@
 <?php
 
 if (is_admin()){
-    /**
-     * Fires as an admin screen or script is being initialized.
-     */
     add_action('admin_init', 'dsb_init_dsb_meta_boxes');
 }
 
-/**
- * Creates Config Meta box with base slug, search terms and locations
- */
+
 function dsb_init_dsb_meta_boxes(){
     $post_id    = dsb_get_valid_post_id();
 
@@ -27,7 +22,6 @@ function dsb_init_dsb_meta_boxes(){
         }
     }
 
-    // Only load on Post Edit screen of CPT = dsb_seo_page and CPT overview
     if ($load_dsb)
     {
         new DSB_Config();

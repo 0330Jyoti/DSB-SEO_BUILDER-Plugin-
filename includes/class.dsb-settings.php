@@ -1,40 +1,16 @@
 <?php
 
-/**
- * Holds DSB_Meta_Field fields to store some settings used by the plugin
- */
 class DSB_Settings {
-	/**
-	 * List of tabs labels
-	 * 
-	 * @var array 
-	 */
+	
 	private $tabs	= array();
 
-	/**
-	 * List of tab panels with DSB_Meta_Field fields
-	 * 
-	 * @var array 
-	 */
 	private $blocks = array();
 
-	/**
-	 * Nonce value that was used for verification, usually via a form field.
-	 * 
-	 * @var string
-	 */
 	private $nonce_name;
 
-	/**
-	 * Metabox ID
-	 * 
-	 * @var string
-	 */
 	private $dsb_settings_page_id = 'dsb_seo_page_page_dsb-settings';
 
-	/**
-	 * Creates an instance of DSB_Settings
-	 */
+	
 	public function __construct(){
 		$meta_box_config = array(
 			'id'	=> 'dsb-meta-box-settings',
@@ -52,16 +28,12 @@ class DSB_Settings {
 		{
 			add_action('add_meta_boxes', array($this, 'add_meta_boxes'));
 
-			// Load the JavaScript needed for the settings screen
 			add_action('admin_enqueue_scripts', array($this, 'dsb_options_page_enqueue_scripts'));
 		}
 	}
 
-	/**
-	 * Adds new submenu page with tabs and fields to hold settings
-	 */
+	
 	public function dsb_admin_menu(){
-		// Add settings menu page
 		$settings_page = add_submenu_page(
 			'edit.php?post_type=dsb_seo_page',
 			__('Settings', 'dsb_seo_builder'),
@@ -324,11 +296,6 @@ class DSB_Settings {
 		}
 	}
 
-	/**
-	 * Loads script needed for the Metabox
-	 * 
-	 * @param string $hook_suffix The current admin page.
-	 */
 	public function dsb_options_page_enqueue_scripts($hook_suffix){
 		$page_hook_id = $this->dsb_settings_page_id;
 
@@ -340,13 +307,9 @@ class DSB_Settings {
 		}
 	}
 
-	/**
-	 * Settings Page Callback
-	 */
 	function dsb_settings_page(){
 		$hook_suffix = $this->dsb_settings_page_id;
 		
-		// enable add_meta_boxes function in this page.
 		do_action('add_meta_boxes', $hook_suffix, false );
 	?>
 		<div class="wrap">
@@ -384,13 +347,9 @@ class DSB_Settings {
 	<?php
 	}
 
-	/**
-	 * Adds meta boxes
-	 */
 	public function add_meta_boxes(){
 		$page_hook_id = $this->dsb_settings_page_id;
 
-		// Save Options page meta box on the right side:
 		add_meta_box(
 			'submitdiv',               
 			__('Save options', 'dsb_seo_builder'),
@@ -410,9 +369,6 @@ class DSB_Settings {
 		);
 	}
 
-	/**
-	 * Submit meta box callback
-	 */
 	public function dsb_submit_meta_box(){
 	?>
 	<div id="submitpost" class="submitbox">
@@ -428,13 +384,6 @@ class DSB_Settings {
 	<?php
 	}
 
-	/**
-	 * Adds DSB_Meta_Block
-	 * 
-	 * @param int				$tab_id		The tab ID
-	 * @param string			$tab_title	The tab title
-	 * @param DSB_Meta_Block 	$block		The tab pabel content with a DSB_Meta_Block object
-	 */
 	public function add_block($tab_id, $tab_title, $block){
 		if (apply_filters('dsb-add-block', true, $tab_id, $tab_title, $block))
 		{
@@ -443,9 +392,6 @@ class DSB_Settings {
 		}
 	}
 
-	/**
-	 * Shows fake meta box with tabs and tab panels with custom DSB_Meta_Field fields
-	 */
 	public function show(){
 		wp_nonce_field(basename(__FILE__), $this->nonce_name);
 

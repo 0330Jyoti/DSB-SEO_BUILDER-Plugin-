@@ -24,30 +24,23 @@ function dsb_plugin_init(){
     load_plugin_textdomain('dsb_seo_builder', false, 'dsb-seo-builder/languages');
 }
 
-/**
- * Activate the plugin.
- */
+
 register_activation_hook( __FILE__, 'dsb_activate' );
 function dsb_activate(){ 
-    // Register CPT
+ 
     dsb_register_cpt_dsb_seo_page();
 
-    // Create a demo page to showcase the plugin functionalities
     dsb_create_seo_gen_example_page();
 
-    // Clear the permalinks after CPT has been registered
     flush_rewrite_rules(); 
 }
  
-/**
- * Deactivation hook.
- */
 register_deactivation_hook( __FILE__, 'dsb_deactivate' );
 function dsb_deactivate(){
-    // Unregister the CPT, so the rules are no longer in memory
+
     unregister_post_type( 'dsb_seo_page' );
 
-    // Clear the permalinks to remove our CPTs rules from the database.
+ 
     flush_rewrite_rules();
 }
 

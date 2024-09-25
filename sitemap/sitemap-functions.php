@@ -1,8 +1,5 @@
 <?php
 
-/**
- * Builds the root sitemap (example.com/seo_generator_sitemap_index.xml) which lists sub-sitemaps
- */
 function dsb_build_root_map(){
     $dsb        		= DSB_Seo_Builder::get_instance();
     $entries_per_page 	= $dsb->dsb_get_entries_per_sitemap_page();
@@ -33,20 +30,13 @@ function dsb_build_root_map(){
     echo $sitemap;
 }
 
-/**
- * Builds the sitemap index.
- *
- * @param array $links Set of sitemaps index links.
- *
- * @return string
- */
 function dsb_get_sitemap_index($links)
 {
 	$xml = '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
 
 	foreach ($links as $link)
 	{
-		$xml .= dsb_sitemap_index_url($link);	// returns <sitemap><loc>URL</loc><lastmod>DATE</lastmod></sitemap>
+		$xml .= dsb_sitemap_index_url($link);
 	}
 
 	$xml .= '</sitemapindex>';
@@ -54,13 +44,6 @@ function dsb_get_sitemap_index($links)
 	return $xml;
 }
 
-/**
- * Build the <sitemap> tag for a given URL.
- *
- * @param array $url Array of parts that make up this entry.
- *
- * @return string
- */
 function dsb_sitemap_index_url($url){
 	$date 		= $url['lastmod'];
 	$charset 	= 'UTF-8';
@@ -74,22 +57,11 @@ function dsb_sitemap_index_url($url){
 	return $output;
 }
 
-/**
- * Build the <url> tags and print to screen
- *
- * @return void
- */
 function dsb_output_seo_pages_sitemap_xml(){
     $dsb        		= DSB_Seo_Builder::get_instance();
-    
-    // The Change Frequency for files, should probably not be 'never', unless you know for sure you'll never change them again.
-    // https://www.sitemaps.org/protocol.html
     $chfreq 			= 'monthly';
-
-    // The Priority Frequency for files. There's no way to differentiate so it might just as well be 1.
     $prio 				= 1;
-
-    $dsb_sitemap_number = (int)get_query_var('dsb_sitemap_number', false) - 1;  // urls count from 1, we count from 0
+    $dsb_sitemap_number = (int)get_query_var('dsb_sitemap_number', false) - 1;  
     $entries_per_page   = $dsb->dsb_get_entries_per_sitemap_page();
 
     $offset             = $entries_per_page * $dsb_sitemap_number;
@@ -111,8 +83,6 @@ function dsb_output_seo_pages_sitemap_xml(){
 
     foreach ($urls as $date => $url)
     {
-        // Start creating the output
-        // <lastmod>2021-01-22T08:01:50+00:00</lastmod>
     ?>
 
     <url>
@@ -124,11 +94,6 @@ function dsb_output_seo_pages_sitemap_xml(){
     }
 }
 
-/**
- * Get the GMT modification date for the last modified post in the post type.
- *
- * @return string|false
- */
 function dsb_get_last_modified_gmt(){
     global $wpdb;
 

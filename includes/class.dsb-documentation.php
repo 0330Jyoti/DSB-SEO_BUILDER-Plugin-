@@ -1,40 +1,16 @@
 <?php
 
-/**
- * Holds DSB_Meta_Field fields to store HTML documentation how to use the plugin
- */
+
 class DSB_Documentation {
-	/**
-	 * List of tabs labels
-	 * 
-	 * @var array 
-	 */
+	
 	private $tabs	= array();
 
-	/**
-	 * List of tab panels with DSB_Meta_Field fields
-	 * 
-	 * @var array 
-	 */
 	private $blocks = array();
 
-	/**
-	 * Nonce value that was used for verification, usually via a form field.
-	 * 
-	 * @var string
-	 */
 	private $nonce_name;
 
-	/**
-	 * Metabox ID
-	 * 
-	 * @var string
-	 */
 	private $dsb_documentation_page_id = 'dsb_seo_page_page_dsb_documentation';
 
-	/**
-	 * Creates an instance of DSB_Documentation
-	 */
 	public function __construct(){
 		$meta_box_config = array(
 			'id'	=> 'dsb-meta-box-documentation',
@@ -52,16 +28,12 @@ class DSB_Documentation {
 		{
 			add_action('add_meta_boxes', array($this, 'add_meta_boxes'));
 
-			// Load the JavaScript needed for the documentation screen
 			add_action('admin_enqueue_scripts', array($this, 'dsb_options_page_enqueue_scripts'));
 		}
 	}
 
-	/**
-	 * Adds new submenu page with tabs and fields to hold documentation
-	 */
+	
 	public function dsb_admin_menu(){
-		// Add documentation menu page
 		$documentation_page = add_submenu_page(
 			'edit.php?post_type=dsb_seo_page',
 			__('Documentation', 'dsb_seo_builder'),
@@ -94,11 +66,7 @@ class DSB_Documentation {
 		}
 	}
 
-	/**
-	 * Loads script needed for the Metabox
-	 * 
-	 * @param string $hook_suffix The current admin page.
-	 */
+	
 	public function dsb_options_page_enqueue_scripts($hook_suffix){
 		$page_hook_id = $this->dsb_documentation_page_id;
 
@@ -110,13 +78,10 @@ class DSB_Documentation {
 		}
 	}
 
-	/**
-	 * Documentation Page Callback
-	 */
+	
 	function dsb_documentation_page(){
 		$hook_suffix = $this->dsb_documentation_page_id;
 		
-		// enable add_meta_boxes function in this page.
 		do_action('add_meta_boxes', $hook_suffix, false );
 	?>
 		<div class="wrap">
@@ -128,7 +93,7 @@ class DSB_Documentation {
 
 				<form id="dsb-form" method="post" action="options.php">
 
-					<?php settings_fields( 'dsb' ); // options group  ?>
+					<?php settings_fields( 'dsb' );  ?>
 					<?php wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false ); ?>
 					<?php wp_nonce_field( 'meta-box-order', 'meta-box-order-nonce', false ); ?>
 
@@ -154,13 +119,10 @@ class DSB_Documentation {
 	<?php
 	}
 
-	/**
-	 * Adds meta boxes
-	 */
+	
 	public function add_meta_boxes(){
 		$page_hook_id = $this->dsb_documentation_page_id;
 
-		// Save Options page meta box on the right side:
 		add_meta_box(
 			'submitdiv',               
 			__('Save options', 'dsb_seo_builder'),
@@ -180,9 +142,7 @@ class DSB_Documentation {
 		);
 	}
 
-	/**
-	 * Submit meta box callback
-	 */
+
 	public function dsb_submit_meta_box(){
 	?>
 	<div id="submitpost" class="submitbox">
@@ -198,13 +158,6 @@ class DSB_Documentation {
 	<?php
 	}
 
-	/**
-	 * Adds DSB_Meta_Block
-	 * 
-	 * @param int				$tab_id		The tab ID
-	 * @param string			$tab_title	The tab title
-	 * @param DSB_Meta_Block 	$block		The tab pabel content with a DSB_Meta_Block object
-	 */
 	public function add_block($tab_id, $tab_title, $block){
 		if (apply_filters('dsb-add-block', true, $tab_id, $tab_title, $block))
 		{
@@ -212,9 +165,6 @@ class DSB_Documentation {
 		}
 	}
 
-	/**
-	 * Shows fake meta box with tabs and tab panels with custom DSB_Meta_Field fields
-	 */
 	public function show(){
 		wp_nonce_field(basename(__FILE__), $this->nonce_name);
 
