@@ -3,8 +3,7 @@
 /**
  * Holds DSB_Meta_Field fields to store HTML documentation how to use the plugin
  */
-class DSB_Documentation
-{
+class DSB_Documentation {
 	/**
 	 * List of tabs labels
 	 * 

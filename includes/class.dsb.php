@@ -3,8 +3,7 @@
  * The DSB_Seo_Builder singleton is used to store information about url parts, search terms, locations etc so we do not need to call
  * these functions thousands of times
  */
-class DSB_Seo_Builder
-{
+class DSB_Seo_Builder {
 	public static $instance;
 
 	/**

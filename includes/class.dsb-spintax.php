@@ -2,8 +2,7 @@
 
 if (!is_admin())
 {
-    class DSB_Spintax
-    {
+    class DSB_Spintax {
         private $text               = '';
         private $choices            = array();
         private $total_combinations = -1;

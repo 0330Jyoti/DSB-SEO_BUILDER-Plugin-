@@ -7,8 +7,7 @@
  * 
  * Only loadded on Post Edit screen of CPT = dsb_seo_page
  */
-class DSB_Config
-{
+class DSB_Config {
 	/**
 	 * Holds DSB_Meta_Field fields to show and save each field
 	 * 

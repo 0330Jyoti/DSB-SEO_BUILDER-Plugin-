@@ -3,8 +3,7 @@
 /**
  * Holds DSB_Meta_Field fields to show and save each field
  */
-class DSB_Meta_Block
-{
+class DSB_Meta_Block {
     /**
      * List of DSB_Meta_Field fields
      * 

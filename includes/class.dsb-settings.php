@@ -3,8 +3,7 @@
 /**
  * Holds DSB_Meta_Field fields to store some settings used by the plugin
  */
-class DSB_Settings
-{
+class DSB_Settings {
 	/**
 	 * List of tabs labels
 	 * 

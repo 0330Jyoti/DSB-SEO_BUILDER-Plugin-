@@ -3,8 +3,7 @@
 /**
  * Shows and saves different types of HTML form fields
  */
-class DSB_Meta_Field
-{
+class DSB_Meta_Field {
 	/**
 	 * @var string	$prefix	Prefix all field names to avoid naming conflicts in post_meta table
 	 */
