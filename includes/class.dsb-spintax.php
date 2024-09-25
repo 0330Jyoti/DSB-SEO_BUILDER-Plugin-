@@ -10,16 +10,14 @@ if (!is_admin())
         private static $instance    = null;
 
         // Private constructor to prevent direct instantiation
-        private function __construct($text)
-        {
+        private function __construct($text){
             $this->text                 = $text;
             $this->choices              = $this->extract_choices($text);
             $this->total_combinations   = $this->calculatetotal_combinations($this->choices);
         }
 
         // Static method to get the singleton instance
-        public static function get_instance($text)
-        {
+        public static function get_instance($text){
             if (self::$instance === null)
             {
                 self::$instance = new self($text);
@@ -34,8 +32,7 @@ if (!is_admin())
         }
 
         // Method to update the spintax and recalculate choices and combinations
-        private function set_spintax($text)
-        {
+        private function set_spintax($text){
             $this->text                 = $text;
 
             if (!empty($text))
@@ -45,8 +42,7 @@ if (!is_admin())
             }
         }
 
-        private function extract_choices($text)
-        {
+        private function extract_choices($text){
             $choices = array();
 
             if (!empty($text))
@@ -82,8 +78,7 @@ if (!is_admin())
             return $trimmed_choices;
         }
 
-        private function calculatetotal_combinations($choices)
-        {
+        private function calculatetotal_combinations($choices){
             $num_combinations = 1;
             if (!empty($choices))
             {
@@ -92,8 +87,7 @@ if (!is_admin())
             return $num_combinations;
         }
 
-        public function get_combination($index_offset = 0)
-        {
+        public function get_combination($index_offset = 0){
             $dsb            = DSB_Seo_Builder::get_instance();
             $index          = $dsb->nsg_get_lookup_table_slug_index() + $index_offset;
             $combinations   = $this->total_combinations;
@@ -137,8 +131,7 @@ if (!is_admin())
             return $result;
         }
 
-        public function get_total_combinations()
-        {
+        public function get_total_combinations(){
             return $this->total_combinations;
         }
     }

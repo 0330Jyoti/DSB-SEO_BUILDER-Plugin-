@@ -1,7 +1,6 @@
 <?php
 
-if (is_admin())
-{
+if (is_admin()){
     /**
      * Fires as an admin screen or script is being initialized.
      */
@@ -11,8 +10,7 @@ if (is_admin())
 /**
  * Creates Config Meta box with base slug, search terms and locations
  */
-function dsb_init_dsb_meta_boxes()
-{
+function dsb_init_dsb_meta_boxes(){
     $post_id    = dsb_get_valid_post_id();
 
     $load_dsb   = false;

@@ -20,8 +20,7 @@
  * 
  * @return array
  */
-function dsb_add_query_vars($public_query_vars)
-{
+function dsb_add_query_vars($public_query_vars){
     // Use to generate all unique slugs that come after the url of the SEO Pages
     $public_query_vars[] = 'dsb_seo_page';
     $public_query_vars[] = 'dsb_seo_page_archive';
@@ -39,8 +38,7 @@ add_filter('query_vars', 'dsb_add_query_vars', 0, 1);
  *
  * Adds rewrite rules
  */
-function dsb_add_rewrite_rules()
-{
+function dsb_add_rewrite_rules(){
     $dsb        = DSB_Seo_Builder::get_instance();
 
     $pages      = $dsb->dsb_get_seo_pages();
@@ -115,8 +113,7 @@ add_action('init', 'dsb_add_rewrite_rules', 999);
  * @param string $requested_url The requested URL.
  */
 add_filter('redirect_canonical', 'dsb_redirect_canonical_paged', 10, 2);
-function dsb_redirect_canonical_paged($redirect_url, $requested_url)
-{
+function dsb_redirect_canonical_paged($redirect_url, $requested_url){
     if ((int)get_query_var('dsb_seo_page_archive') && (int)get_query_var('paged') > 1)
     {
         $post_id        = (int)get_query_var('p');
@@ -141,8 +138,7 @@ function dsb_redirect_canonical_paged($redirect_url, $requested_url)
 }
 
 add_action('pre_get_posts', 'dsb_pre_get_posts', 10, 1);
-function dsb_pre_get_posts ($query)
-{
+function dsb_pre_get_posts ($query){
     // Wordpress thinks we are querying a Post because the URL is paged
     if (!is_admin() && $query->is_main_query())
     {
@@ -160,8 +156,7 @@ function dsb_pre_get_posts ($query)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 add_filter( 'rewrite_rules_array', 'dsb_rewrite_rules_array', 10, 1);
-function dsb_rewrite_rules_array($rules)
-{
+function dsb_rewrite_rules_array($rules){
     // Remove all other rewrite rules added by Wordpress for our CPT as we do not use these
     $rules = array_filter($rules, function($rule) 
     {
@@ -181,8 +176,7 @@ function dsb_rewrite_rules_array($rules)
  * 
  * @return string The path of the template to include.
  */
-function dsb_template_include($template)
-{
+function dsb_template_include($template){
     // Gradually increase checks. Easiest most lightweight first:
     if (is_singular())
     {
@@ -247,8 +241,7 @@ function dsb_template_include($template)
  * 
  * @return string The path of the template to include.
  */
-function dsb_template_include_archive($template)
-{
+function dsb_template_include_archive($template){
     // Gradually increase checks. Easiest most lightweight first:
     if (is_singular())
     {
@@ -327,8 +320,7 @@ add_filter('template_include', 'dsb_template_include_archive', $dsb_template_inc
  * 
  * @return string The post's permalink.
  */
-function dsb_remove_slug($post_link, $post, $leavename)
-{
+function dsb_remove_slug($post_link, $post, $leavename){
     if ($post->post_type === 'dsb_seo_page' && ($post->post_status === 'publish' || $post->post_status === 'draft'))
     {
         // Check get_query_var('dsb_seo_page') for the page we are currently on
@@ -372,8 +364,7 @@ add_filter('post_type_link', 'dsb_remove_slug', 10, 3);
  *
  * Adds rewrite rules for the sitemap index and sitemap pages
  */
-function dsb_seo_generator_sitemap_xml_add_rewrite_rule()
-{
+function dsb_seo_generator_sitemap_xml_add_rewrite_rule(){
     // SITEMAP: listen to <SITE_URL>/seo_generator_sitemap_index.xml
     add_rewrite_rule(
         'seo_generator_sitemap_index.xml',
@@ -398,8 +389,7 @@ add_action( 'init', 'dsb_seo_generator_sitemap_xml_add_rewrite_rule' );
  * @param bool     $preempt  Whether to short-circuit default header status handling. Default false.
  */
 add_filter( 'pre_handle_404', 'dsb_pre_handle_404', 10, 1);
-function dsb_pre_handle_404 ($preempt)
-{
+function dsb_pre_handle_404 ($preempt){
     $dsb_sitemap_query_var = get_query_var('dsb_sitemap', false);
     if ($dsb_sitemap_query_var === 'dsb_show_sitemap_index' || $dsb_sitemap_query_var === 'dsb_show_sitemap')
     {
@@ -414,8 +404,7 @@ function dsb_pre_handle_404 ($preempt)
  * 
  * Adds actions to redirect sitemap urls and show correct content
  */
-function dsb_template_redirect_sitemap()
-{
+function dsb_template_redirect_sitemap(){
     $dsb_sitemap = get_query_var('dsb_sitemap', false);
     
     if ($dsb_sitemap === 'dsb_show_sitemap_index')
@@ -432,8 +421,7 @@ add_action('wp', 'dsb_template_redirect_sitemap');
 /**
  * Shows sitemap index with all sitemap pages
  */
-function dsb_show_sitemap_index()
-{
+function dsb_show_sitemap_index(){
     global $dsb_seo_generator_dir;
 
     require_once "{$dsb_seo_generator_dir}/sitemap/sitemap-functions.php";
@@ -445,8 +433,7 @@ function dsb_show_sitemap_index()
 /**
  * Shows sitemap page with dynamically generated SEO pages
  */
-function dsb_show_sitemap()
-{
+function dsb_show_sitemap(){
     global $dsb_seo_generator_dir;
 
     require_once "{$dsb_seo_generator_dir}/sitemap/sitemap-functions.php";
@@ -462,8 +449,7 @@ function dsb_show_sitemap()
  * 
  * @return string   The sitemap url
  */
-function dsb_get_sitemap_url($current_page = false)
-{
+function dsb_get_sitemap_url($current_page = false){
     $sitemap_url = '';
 
     if ($current_page !== false)

@@ -9,8 +9,7 @@
  * 
  * @param string[] $post_columns An associative array of column headings.
  */
-function dsb_add_slug_column($post_columns)
-{
+function dsb_add_slug_column($post_columns){
     // In case the theme or another plugin changed our columns of our CPT dsb_seo_page and removed the Title column...
     if (isset($post_columns['title']))
     {
@@ -78,8 +77,7 @@ add_filter('manage_dsb_seo_page_posts_columns', 'dsb_add_slug_column');
  * @param string $column_name The name of the column to display.
  * @param int    $post_id     The current post ID.
  */
-function dsb_add_custom_column_data($column_name, $post_id)
-{
+function dsb_add_custom_column_data($column_name, $post_id){
     if ($column_name === 'dsb_seo_page_base')
     {
         // dsb_seo_page_base is a dummy field, use the post_name instead 
@@ -148,8 +146,7 @@ add_action( 'manage_dsb_seo_page_posts_custom_column' , 'dsb_add_custom_column_d
  * 
  * @return string[]     Array of template header names keyed by the template file name.
  */
-function dsb_theme_page_templates($post_templates)
-{
+function dsb_theme_page_templates($post_templates){
     // No need for additional checks, this filter is only called for CTP dsb_seo_page
     // Reset, make sure no other templates are shown:
     $post_templates = array();
@@ -172,8 +169,7 @@ add_filter("theme_dsb_seo_page_templates", "dsb_theme_page_templates", 999, 1);
  * 
  * @see dsb_theme_page_templates
  */
-function dsb_wp_enqueue_scripts()
-{
+function dsb_wp_enqueue_scripts(){
     if (get_option('dsb-include_front_end_styling', true))
     {
         wp_enqueue_style(
@@ -190,8 +186,7 @@ add_action('wp_enqueue_scripts', 'dsb_wp_enqueue_scripts', 10, 0);
 /**
  * Enqueue scripts and stylesheets for CPT dsb_seo_page admin pages.
  */
-function dsb_load_admin_scripts()
-{
+function dsb_load_admin_scripts(){
     global $typenow;
 
     if ($typenow === 'dsb_seo_page')

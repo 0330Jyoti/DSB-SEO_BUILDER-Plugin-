@@ -1,12 +1,10 @@
 <?php
 
-function dsb_is_yoast_active()
-{
+function dsb_is_yoast_active(){
     return (is_plugin_active('wordpress-seo/wp-seo.php') || is_plugin_active('wordpress-seo-premium/wp-seo-premium.php'));
 }
 
-if (!is_admin())
-{
+if (!is_admin()){
     // <title>-tag
     add_filter('wp_title', 'dsb_get_seo_pages_replace_search_terms_and_locations', -99999999, 1);          // i think for older wordpress versions?
 
@@ -37,8 +35,7 @@ if (!is_admin())
     add_filter('wpseo_frontend_presenter_classes', 'dsb_wpseo_frontend_presenter_classes');
 }
 
-function dsb_wpseo_breadcrumb_links($links)
-{
+function dsb_wpseo_breadcrumb_links($links){
     global $post;
 
     if ((int)get_query_var('dsb_seo_page_archive') && is_array($links) && count($links) === 2)
@@ -65,8 +62,7 @@ function dsb_wpseo_breadcrumb_links($links)
     return $links;
 }
 
-function dsb_wpseo_frontend_presenter_classes ($filter)
-{
+function dsb_wpseo_frontend_presenter_classes ($filter){
 	if (($key = array_search('Yoast\WP\SEO\Presenters\Open_Graph\Article_Modified_Time_Presenter', $filter)) !== false)
     {
 		unset($filter[$key]);
@@ -98,8 +94,7 @@ add_filter( 'wpseo_json_ld_output', '__return_false' );
  * return string The open graph URL
  */
 add_filter( 'wpseo_opengraph_url', 'dsb_yoast_opengraph_url' );
-function dsb_yoast_opengraph_url($url)
-{
+function dsb_yoast_opengraph_url($url){
     if (get_post_type() === 'dsb_seo_page' && get_the_ID() > 0)
     {
         $url  = dsb_get_canonical_url ('');

@@ -24,8 +24,7 @@ class DSB_Meta_Field
 	 * 
 	 * @param array $args Array of arguments to build the field
 	 */
-	public function __construct($args)
-	{
+	public function __construct($args){
         $prefix = $this->get_prefix();
         
         // Prefix all field names to avoid conflicts
@@ -55,16 +54,14 @@ class DSB_Meta_Field
 	/**
 	 * Give user role = Editor the permission to save fields added to the Settings page
 	 */
-	public function dsb_map_options_capability($cap)
-	{
+	public function dsb_map_options_capability($cap){
 		return 'edit_pages';
 	}
 
 	/**
      * Shows the html field
      */
-    public function show()
-    {
+    public function show(){
         $this->before_field();
         
         $this->show_field();
@@ -75,8 +72,7 @@ class DSB_Meta_Field
 	/**
      * Saves the html field when submitted
      */
-    public function save()
-	{
+    public function save(){
         global $post;
         
         $value      = null;
@@ -121,8 +117,7 @@ class DSB_Meta_Field
 	 * 
 	 * @return string Sanitized string.
 	 */
-	public function sanitize_value($value)
-	{
+	public function sanitize_value($value){
 		$value = apply_filters('dsb-meta-block-field-sanitize-value', $value, $this);
 
 		return sanitize_text_field($value);
@@ -133,8 +128,7 @@ class DSB_Meta_Field
 	 * 
 	 * @return string The field value
 	 */
-	public function get_value()
-	{
+	public function get_value(){
         global $post;
         $post_id = false;
                 
@@ -183,8 +177,7 @@ class DSB_Meta_Field
 	 * 
 	 * @return string The field id
 	 */
-	public function get_id()
-	{
+	public function get_id(){
 		return $this->args['attr']['id'];
 	}
     
@@ -193,8 +186,7 @@ class DSB_Meta_Field
 	 * 
 	 * @return string The field prefix
 	 */
-    public function get_prefix()
-    {
+    public function get_prefix(){
 		/**
 		 * Allows for other prefix
 		 * 
@@ -212,8 +204,7 @@ class DSB_Meta_Field
 	 * 
 	 * @param string $label_postfix Optionally postfix to show after the label
 	 */
-	public function before_field($label_postfix = '')
-	{
+	public function before_field($label_postfix = ''){
         $wrapper_class      = $this->args['wrapper_class'];
         $wrapper_class[]    = 'css-id-' . sanitize_title($this->get_id());
         $wrapper_class[]    = 'css-value-' . sanitize_title($this->get_value());
@@ -245,8 +236,7 @@ class DSB_Meta_Field
 	/**
 	* Echos HTML that comes after a field (container, description, etc).
 	*/
-	public function after_field()
-	{
+	public function after_field(){
         if(isset($this->args['desc']))
 		{
 			$this->get_field_description($this->args['desc']);
@@ -261,8 +251,7 @@ class DSB_Meta_Field
 	*
 	* @param string $desc
 	*/
-	public function get_field_description($desc)
-	{
+	public function get_field_description($desc){
         $prefix         = $this->get_prefix();
 
 		$desc	= apply_filters('dsb-get-field-description', $desc, $this);
@@ -282,8 +271,7 @@ class DSB_Meta_Field
 	 * 
 	 * @return array The field attributes
 	 */
-    public function get_attributes($include_value = true)
-    {
+    public function get_attributes($include_value = true){
         // Get all attributes
         $attr           = $this->args['attr'];
         
@@ -318,8 +306,7 @@ class DSB_Meta_Field
 	 * 
 	 * @return array Converted key value pairs
 	 */
-    protected function array_to_key_value_pairs($array)
-    {
+    protected function array_to_key_value_pairs($array){
         $result = array();
         
         // Create key = value pairs
@@ -346,8 +333,7 @@ class DSB_Meta_Input_Field extends DSB_Meta_Field
 	/**
 	 * Shows the html input field tag
 	 */
-	public function show_field()
-	{
+	public function show_field(){
         $attributes = $this->get_attributes(true);
         
         echo sprintf(
@@ -367,8 +353,7 @@ class DSB_Meta_Textarea_Field extends DSB_Meta_Field
 	/**
 	 * Shows the html textarea field tag
 	 */
-	public function show_field()
-	{        
+	public function show_field(){        
         $attributes = $this->get_attributes(false);
         $value      = $this->get_value();
 
@@ -386,8 +371,7 @@ class DSB_Meta_Textarea_Field extends DSB_Meta_Field
 	 * 
 	 * @return string Sanitized string.
 	 */
-	public function sanitize_value($value)
-	{
+	public function sanitize_value($value){
 		$value = apply_filters('dsb-meta-block-field-sanitize-value', $value, $this);
 
 		return sanitize_textarea_field($value);
@@ -409,8 +393,7 @@ class DSB_Meta_HTML_Field extends DSB_Meta_Field
 	 * 
 	 * Shows nothing by itself unless 'desc' arg is set. Output can be altered by filters
 	 */
-	public function show()
-	{
+	public function show(){
 		/**
 		 * Fires once the field is shown
 		 * 
@@ -454,8 +437,7 @@ class DSB_Meta_Radiobutton_Group_Field extends DSB_Meta_Field
 	/**
 	 * Shows the html radio buttons tags
 	 */
-    public function show_field()
-    {
+    public function show_field(){
         $field_id   = $this->get_id();
         
         // Find out if the checkbox is checked or not

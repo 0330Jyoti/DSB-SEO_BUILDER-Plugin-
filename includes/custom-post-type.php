@@ -2,8 +2,7 @@
 
 // Register Custom Post Type: dsb_seo_page
 add_action( 'init', 'dsb_register_cpt_dsb_seo_page', -99999 );
-function dsb_register_cpt_dsb_seo_page()
-{
+function dsb_register_cpt_dsb_seo_page(){
 	$labels = array(
 		"name"                  => _x("SEO Builder", 'Post type general name', 'dsb_seo_builder'),
 		"singular_name"         => _x("SEO Page", 'Post type singular name', 'dsb_seo_builder'),

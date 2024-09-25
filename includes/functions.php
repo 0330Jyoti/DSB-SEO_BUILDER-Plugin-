@@ -1,7 +1,6 @@
 <?php
 
-function dsb_regenerate_search_terms_and_locations_lookup_tables()
-{
+function dsb_regenerate_search_terms_and_locations_lookup_tables(){
 	$dsb        = DSB_Seo_Builder::get_instance();
     $seo_pages  = $dsb->dsb_get_seo_pages();
 
@@ -15,8 +14,7 @@ function dsb_regenerate_search_terms_and_locations_lookup_tables()
     }
 }
 
-function dsb_get_search_terms_and_locations_lookup_tables()
-{
+function dsb_get_search_terms_and_locations_lookup_tables(){
 	$meta_key = 'dsb-search-word-and-location-for-slugs';
 
     $posts = get_posts(
@@ -39,8 +37,7 @@ function dsb_get_search_terms_and_locations_lookup_tables()
     return $meta_values;
 }
 
-function dsb_get_search_terms_and_locations_lookup_table($post_id)
-{
+function dsb_get_search_terms_and_locations_lookup_table($post_id){
 	$lookup_table = array();
 	if ($post_id > 0)
 	{
@@ -60,8 +57,7 @@ function dsb_get_search_terms_and_locations_lookup_table($post_id)
  * 
  * @return string	$value		The value with the search term and location placeholders already replaced
  */
-function dsb_get_field($key, $post_id = false, $default_value = false, $do_replace = true)
-{
+function dsb_get_field($key, $post_id = false, $default_value = false, $do_replace = true){
 	$post_id	= dsb_get_valid_post_id($post_id);
 	$value		= get_post_meta($post_id, $key, true);
     
@@ -85,8 +81,7 @@ function dsb_get_field($key, $post_id = false, $default_value = false, $do_repla
  * 
  *  @return	$post_id (mixed)
  */
-function dsb_get_valid_post_id($post_id = 0)
-{
+function dsb_get_valid_post_id($post_id = 0){
 	// if not $post_id, load queried object
 	if( !$post_id )
 	{
@@ -153,8 +148,7 @@ function dsb_get_valid_post_id($post_id = 0)
 }
 
 // Return the single value if the string contains single | plural in 1 line
-function dsb_get_single_value($value)
-{
+function dsb_get_single_value($value){
 	if (strstr($value, "|"))
 	{
 		$values = explode("|", $value);
@@ -169,8 +163,7 @@ function dsb_get_single_value($value)
 }
 
 // Return the plural value if the string contains "single | plural" in 1 line
-function dsb_get_plural_value($value)
-{
+function dsb_get_plural_value($value){
 	if (strstr($value, "|"))
 	{
 		$values = explode("|", $value);
@@ -189,8 +182,7 @@ function dsb_get_plural_value($value)
  * 
  * Workaround to automatically flush rewrite rules when needed
  */
-function dsb_late_init_flush_rewrite_rules()
-{
+function dsb_late_init_flush_rewrite_rules(){
     if (!$option = get_option( 'dsb-flush-rewrite-rules'))
     {
         return false;
@@ -214,8 +206,7 @@ add_action('init', 'dsb_late_init_flush_rewrite_rules', 999999);
  * 
  * @return string	The multiline string maximum set lines
  */
-function dsb_limit_max_lines($string, $max_lines)
-{
+function dsb_limit_max_lines($string, $max_lines){
 	
     if (!empty($string))
 	{
@@ -233,8 +224,7 @@ function dsb_limit_max_lines($string, $max_lines)
  * 
  * @return array	$array			The multiline string where each line is added to an array
  */
-function dsb_textarea_value_to_array($textarea_value)
-{
+function dsb_textarea_value_to_array($textarea_value){
 	$array = false;
     if (!empty($textarea_value))
     {
@@ -256,8 +246,7 @@ function dsb_textarea_value_to_array($textarea_value)
  * 
  * @return array
  */
-function dsb_recursive_array_replace ($find, $replace, $array)
-{
+function dsb_recursive_array_replace ($find, $replace, $array){
     if (! is_array($array)) {
         return str_replace($find, $replace, $array);
     }
@@ -280,8 +269,7 @@ function dsb_recursive_array_replace ($find, $replace, $array)
  * 
  * @return	bool
  */
-function dsb_is_empty( $var )
-{
+function dsb_is_empty( $var ){
 	return ( !$var && !is_numeric($var) );
 }
 
@@ -295,8 +283,7 @@ function dsb_is_empty( $var )
  * 
  * @return string Robots.txt content with sitemap added
  */
-function dsb_add_sitemap_to_robots($output, $public)
-{
+function dsb_add_sitemap_to_robots($output, $public){
     $output .= "\r\nSitemap: " . dsb_get_sitemap_url();
 
 	return $output;
@@ -315,8 +302,7 @@ add_filter('robots_txt', 'dsb_add_sitemap_to_robots', 10, 2);
  * 
  * @return array Array with value inserted after given position
  */
-function dsb_array_insert_after($array, $insert_after, $key, $new)
-{
+function dsb_array_insert_after($array, $insert_after, $key, $new){
     $pos = (int) array_search($insert_after, array_keys($array)) + 1;
     return array_merge(
         array_slice($array, 0, $pos),
@@ -336,8 +322,7 @@ function dsb_array_insert_after($array, $insert_after, $key, $new)
  * 
  * @return bool Whether the option exists or not
  */
-function dsb_option_exists($option)
-{
+function dsb_option_exists($option){
     global $wpdb;
 
 	$table	= $wpdb->prefix . "options";
@@ -349,8 +334,7 @@ function dsb_option_exists($option)
 
 add_filter( "previous_post_link", "dsb_get_adjacent_post_link", 10, 5);
 add_filter( "next_post_link", "dsb_get_adjacent_post_link", 10, 5);
-function dsb_get_adjacent_post_link($output, $format, $link, $post, $adjacent)
-{
+function dsb_get_adjacent_post_link($output, $format, $link, $post, $adjacent){
 	if (!empty($output) && get_post_type($post) === 'dsb_seo_page')
 	{
 		libxml_use_internal_errors(true);	// disable warnings about imperfect HTML markup
@@ -400,8 +384,7 @@ function dsb_get_adjacent_post_link($output, $format, $link, $post, $adjacent)
  *
  * @return string The formatted date.
  */
-function dsb_format_timestamp($date, $offset = false)
-{
+function dsb_format_timestamp($date, $offset = false){
 	$date = new DateTime($date);
 
 	if ($offset !== false)
@@ -421,8 +404,7 @@ function dsb_format_timestamp($date, $offset = false)
  */
 add_filter( 'get_canonical_url', 'dsb_get_canonical_url', 999999999999999999999999999, 1);
 add_filter( 'wpseo_canonical', 'dsb_get_canonical_url', 999999999999999999999999999, 1);
-function dsb_get_canonical_url ($canonical_url, $post = false)
-{
+function dsb_get_canonical_url ($canonical_url, $post = false){
 	$post_id = (int)dsb_get_valid_post_id();
 
 	if ((int)get_query_var('dsb_seo_page_archive'))
@@ -452,8 +434,7 @@ function dsb_get_canonical_url ($canonical_url, $post = false)
 
 // Remove <link rel='shortlink' href='http://localhost/lite/klanten/connectr/seobuilder/?p={$post_id}' /> from head
 add_filter('get_shortlink', 'dsb_get_shortlink', 10, 2);
-function dsb_get_shortlink($shortlink, $post_id)
-{
+function dsb_get_shortlink($shortlink, $post_id){
 	if ((int)$post_id === 0)
 	{
 		$post_id = dsb_get_valid_post_id();
@@ -472,8 +453,7 @@ function dsb_get_shortlink($shortlink, $post_id)
 // <link rel="alternate" type="application/json+oembed"
 // <link rel="alternate" type="text/xml+oembed
 add_filter( 'oembed_discovery_links', 'dsb_oembed_discovery_links', 10, 1);
-function dsb_oembed_discovery_links($output)
-{
+function dsb_oembed_discovery_links($output){
 	$post_id = dsb_get_valid_post_id();
 
 	if (($post_id > 0 && get_post_type($post_id) === 'dsb_seo_page') || (int)get_query_var('dsb_seo_page_archive'))
@@ -485,8 +465,7 @@ function dsb_oembed_discovery_links($output)
 }
 
 add_action('init', 'dsb_cleanup_head');
-function dsb_cleanup_head()
-{
+function dsb_cleanup_head(){
 	remove_action( 'wp_head', 'feed_links_extra', 3 );				// Display the links to the extra feeds such as category feeds
 	remove_action( 'wp_head', 'feed_links', 2 ); 					// Display the links to the general feeds: Post and Comment Feed
 	remove_action( 'wp_head', 'index_rel_link' ); 					// index link
@@ -502,8 +481,7 @@ function dsb_cleanup_head()
  * 
  * @return Wheter or not we are on the settings page
  */
-function dsb_is_settings_page()
-{
+function dsb_is_settings_page(){
 	global $pagenow;
 
 	return $pagenow === 'edit.php' && isset($_GET['post_type']) && $_GET['post_type'] === 'dsb_seo_page' && isset($_GET['page']) && $_GET['page'] === 'dsb-settings';
@@ -516,8 +494,7 @@ function dsb_is_settings_page()
  * 
  * @return Wheter or not we are on the documentation page
  */
-function dsb_is_documentation_page()
-{
+function dsb_is_documentation_page(){
 	global $pagenow;
 
 	return $pagenow === 'edit.php' && isset($_GET['post_type']) && $_GET['post_type'] === 'dsb_seo_page' && isset($_GET['page']) && $_GET['page'] === 'dsb-documentation';
@@ -533,8 +510,7 @@ function dsb_is_documentation_page()
  *                              'deactivate', and 'delete'. With Multisite active this can also include
  *                              'network_active' and 'network_only' items.
  */
-function dsb_plugin_settings_link($links)
-{ 
+function dsb_plugin_settings_link($links){ 
 	$settings_page_url	= menu_page_url('dsb-settings', false);
 	$settings_link		= sprintf('<a href="%s">%s</a>',
 		esc_attr($settings_page_url),
@@ -549,8 +525,7 @@ $dsb_seo_generator_basename = dsb_get_plugin_basename();
 add_filter("plugin_action_links_{$dsb_seo_generator_basename}", 'dsb_plugin_settings_link');
 
 // Check if we are on an arhive or single dsb_seo_page page in the frontend
-function dsb_is_dsb_page()
-{
+function dsb_is_dsb_page(){
 	$is_dsb_page = false;
 
 	$post_id = dsb_get_valid_post_id();
@@ -564,8 +539,7 @@ function dsb_is_dsb_page()
 }
 
 // Locate the template to be loaded from either the plugin or overridden and load from theme
-function dsb_get_template($post_id)
-{
+function dsb_get_template($post_id){
     // Default template used by Wordpress: get_page_template_slug() returns empty string and falls back to single.php (or whatever default template in theme falls back on)
 
     // If a custom template is selected, make sure we include this and not fall back to page.php to show a regular page
@@ -593,8 +567,7 @@ function dsb_get_template($post_id)
 }
 
 // Create a demo page to showcase the plugin functionalities
-function dsb_create_seo_gen_example_page()
-{
+function dsb_create_seo_gen_example_page(){
     $post_content = 
 '<h2>Professional [search_term] in [location]</h2>
 Find a [search_term] in [location]. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam varius nec ex fermentum vehicula. Cras sodales est nec gravida pretium. Integer libero arcu, pulvinar vitae tempus eget, convallis ut nulla.

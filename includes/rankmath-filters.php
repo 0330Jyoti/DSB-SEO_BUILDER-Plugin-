@@ -1,7 +1,6 @@
 <?php
 
-if (!is_admin())
-{
+if (!is_admin()){
     // https://rankmath.com/kb/filters-hooks-api-developer/
     add_filter( 'rank_math/frontend/title', 'dsb_get_seo_pages_replace_search_terms_and_locations', 9999999, 1);
     add_filter( 'rank_math/frontend/description', 'dsb_get_seo_pages_replace_search_terms_and_locations', 9999999, 1);
@@ -15,8 +14,7 @@ if (!is_admin())
     // add_filter( 'rank_math/sitemap/index', 'dsb_rank_math_sitemap_index', 11, 1);   
 }
 
-function dsb_rank_math_head()
-{
+function dsb_rank_math_head(){
     if (dsb_is_dsb_page())
     {
         // Remove Facebook and Twitter meta opengraph tags
@@ -32,8 +30,7 @@ function dsb_rank_math_head()
     }
 }
 
-function dsb_rank_math_opengraph_pre_set_content_image($result)
-{
+function dsb_rank_math_opengraph_pre_set_content_image($result){
     if (dsb_is_dsb_page())
     {
         $result = true;
@@ -53,8 +50,7 @@ function dsb_rank_math_opengraph_pre_set_content_image($result)
 // }
 
 add_filter( 'rank_math/frontend/canonical', 'dsb_rank_math_frontend_canonical', 10, 1);
-function dsb_rank_math_frontend_canonical($canonical)
-{
+function dsb_rank_math_frontend_canonical($canonical){
     if (dsb_is_dsb_page())
     {
         $canonical = urldecode($canonical);

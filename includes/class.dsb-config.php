@@ -33,8 +33,7 @@ class DSB_Config
 	/**
 	 * 
 	 */
-	public function __construct()
-	{
+	public function __construct(){
 		// Fake meta box configuration
 		$this->meta_box_config = array(
 			'id'		=> 'dsb-seo-page-config',
@@ -233,8 +232,7 @@ class DSB_Config
 	/**
 	 * Show fake meta box above the_content() editor and make sure it's not sortable, foldable, etc
 	 */
-    public function edit_form_after_title()
-    {
+    public function edit_form_after_title(){
         $this->show();
     }
 
@@ -247,8 +245,7 @@ class DSB_Config
 	 * @param WP_Post $post    Post object.
 	 * @param bool    $update  Whether this is an existing post being updated.
 	 */
-	public function save($post_id, $post, $update)
-	{
+	public function save($post_id, $post, $update){
 		if(
 			(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) ||	// prevent the data from being auto-saved
 			(!current_user_can('edit_post', $post_id)) || 		// check user permissions
@@ -273,16 +270,14 @@ class DSB_Config
 	 * 
 	 * @param DSB_Meta_Block $block	DSB_Meta_Block object
 	 */
-	public function set_block($block)
-	{
+	public function set_block($block){
 		$this->block = $block;
 	}
 
 	/**
 	 * Shows fake meta box with custom DSB_Meta_Field fields
 	 */
-	public function show()
-	{
+	public function show(){
 		// By faking the metabox design with class=postbox, we avoid all problems related to the metabox being sortable, foldable, etc
 		printf ("\r\n<div id='%s' class='postbox'>\r\n",
 				$this->meta_box_config['id']

@@ -20,8 +20,7 @@ defined('ABSPATH') or die();
 define('DSB_PLUGIN_VERSION', '2.6.0');
 
 add_action('init', 'dsb_plugin_init', -999999);
-function dsb_plugin_init()
-{
+function dsb_plugin_init(){
     load_plugin_textdomain('dsb_seo_builder', false, 'dsb-seo-builder/languages');
 }
 
@@ -29,8 +28,7 @@ function dsb_plugin_init()
  * Activate the plugin.
  */
 register_activation_hook( __FILE__, 'dsb_activate' );
-function dsb_activate()
-{ 
+function dsb_activate(){ 
     // Register CPT
     dsb_register_cpt_dsb_seo_page();
 
@@ -45,8 +43,7 @@ function dsb_activate()
  * Deactivation hook.
  */
 register_deactivation_hook( __FILE__, 'dsb_deactivate' );
-function dsb_deactivate()
-{
+function dsb_deactivate(){
     // Unregister the CPT, so the rules are no longer in memory
     unregister_post_type( 'dsb_seo_page' );
 
@@ -54,20 +51,17 @@ function dsb_deactivate()
     flush_rewrite_rules();
 }
 
-function dsb_get_plugin_dir()
-{
+function dsb_get_plugin_dir(){
     $dsb_seo_generator_dir = plugin_dir_path(__FILE__);
     return $dsb_seo_generator_dir;
 }
 
-function dsb_get_plugin_url()
-{
+function dsb_get_plugin_url(){
     $dsb_seo_generator_url = plugins_url('dsb-seo-builder');
     return $dsb_seo_generator_url;
 }
 
-function dsb_get_plugin_basename()
-{
+function dsb_get_plugin_basename(){
     $dsb_seo_generator_basename = plugin_basename(__FILE__);
     return $dsb_seo_generator_basename;
 }

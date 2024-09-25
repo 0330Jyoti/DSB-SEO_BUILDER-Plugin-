@@ -43,8 +43,7 @@ if (!is_admin())
  * @param string|int[] $size       Requested image size. Can be any registered image size name, or
  *                                 an array of width and height values in pixels (in that order).
  */
-function dsb_wp_get_attachment_image_attributes($attr, $attachment, $size)
-{
+function dsb_wp_get_attachment_image_attributes($attr, $attachment, $size){
     if (get_post_type() === 'dsb_seo_page')
     {
         $post_id        = dsb_get_valid_post_id();
@@ -65,8 +64,7 @@ function dsb_wp_get_attachment_image_attributes($attr, $attachment, $size)
  *     @type string $site    Optional. Site title when not on home page.
  * }
  */
-function dsb_document_title_parts_replace_search_terms_and_locations($title)
-{
+function dsb_document_title_parts_replace_search_terms_and_locations($title){
     $title['title'] = dsb_get_seo_pages_replace_search_terms_and_locations($title['title']);
 
     return $title;
@@ -86,8 +84,7 @@ function dsb_document_title_parts_replace_search_terms_and_locations($title)
  * 
  * @return string $text The text with the replacements made
  */
-function dsb_get_seo_pages_replace_search_terms_and_locations($text, $the_post_id = false, $search_term = false, $location = false, $search_term_plural = false, $location_plural = false, $the_slug = false, $spintax_offset = 0)
-{
+function dsb_get_seo_pages_replace_search_terms_and_locations($text, $the_post_id = false, $search_term = false, $location = false, $search_term_plural = false, $location_plural = false, $the_slug = false, $spintax_offset = 0){
     $post_id = get_the_ID();
         
 	if (get_post_type($the_post_id) === 'dsb_seo_page' && $the_post_id !== false && $post_id !== $the_post_id)
@@ -231,8 +228,7 @@ function dsb_get_seo_pages_replace_search_terms_and_locations($text, $the_post_i
     return $text;
 }
 
-function dsb_get_archive_page_meta_description()
-{
+function dsb_get_archive_page_meta_description(){
 	$dsb               	= DSB_Seo_Builder::get_instance();
 	$post_id			= dsb_get_valid_post_id();
 	$meta_description	= '';
@@ -268,8 +264,7 @@ function dsb_get_archive_page_meta_description()
 /**
  * Add previous / index / next links to improve internal linking
  */
-function dsb_add_adjacent_post_links($content)
-{
+function dsb_add_adjacent_post_links($content){
 	if (get_option('dsb-enable_adjacent_seo_pages_links', true))
 	{
 		$post_id 		= get_the_ID();
@@ -353,8 +348,7 @@ function dsb_add_adjacent_post_links($content)
 
 // Update NW SEO Page titles in admin nav menus and replace placeholders
 add_filter('wp_setup_nav_menu_item', 'dsb_wp_setup_nav_menu_item', 10, 1);
-function dsb_wp_setup_nav_menu_item($menu_item)
-{
+function dsb_wp_setup_nav_menu_item($menu_item){
 	if (is_admin() && $menu_item->object === 'dsb_seo_page')
 	{
 		$post_id 		= $menu_item->object_id;
@@ -377,8 +371,7 @@ function dsb_wp_setup_nav_menu_item($menu_item)
 	return $menu_item;
 }
 
-function dsb_wp_head_title_tag()
-{
+function dsb_wp_head_title_tag(){
     $title = '';
 
     if (dsb_is_dsb_page())
@@ -393,8 +386,7 @@ function dsb_wp_head_title_tag()
 }
 
 // Print meta decription in the head tag on the front end.
-function dsb_wp_head()
-{
+function dsb_wp_head(){
 	if (dsb_is_dsb_page())
 	{
 		// dsb-meta-description

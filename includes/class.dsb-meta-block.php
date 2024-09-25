@@ -15,8 +15,7 @@ class DSB_Meta_Block
     /**
      * Shows all DSB_Meta_Field fields added to this block
      */
-	public function show()
-	{
+	public function show(){
         if (is_array($this->fields) && count($this->fields) > 0)
 		{
 			foreach ($this->fields as $field)
@@ -29,8 +28,7 @@ class DSB_Meta_Block
     /**
      * Saves each DSB_Meta_Field field when the dsb_seo_page or dsb_seo_page settings are saved
      */
-	public function save()
-	{
+	public function save(){
 		if (is_array($this->fields) && count($this->fields) > 0)
 		{
 			foreach ($this->fields as $field)
@@ -45,8 +43,7 @@ class DSB_Meta_Block
      * 
      * @param DSB_Meta_Field $field The field to add
      */
-	public function add_field($field)
-	{
+	public function add_field($field){
         $this->fields[$field->get_id()] = $field;
 	}
 }

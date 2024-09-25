@@ -87,8 +87,7 @@ class DSB_Seo_Builder
     public $default_location_single_placeholder     = '[location]';
     public $default_location_plural_placeholder     = '[locations]';
 
-	function __construct()
-	{
+	function __construct(){
         $this->search_term_single_placeholder  = get_option('dsb-search-term-placeholder', '[search_term]');
         $this->search_term_plural_placeholder  = get_option('dsb-search-terms-placeholder', '[search_terms]');
 
@@ -111,8 +110,7 @@ class DSB_Seo_Builder
      * 
      * @return DSB_Seo_Builder
      */
-	public static function get_instance()
-	{
+	public static function get_instance(){
         if (self::$instance === null)
 		{
             self::$instance = new self();
@@ -128,8 +126,7 @@ class DSB_Seo_Builder
 	 *
 	 * @return $search_terms	Array The list of search terms
 	 */
-    public function dsb_get_search_terms($post_id)
-    {
+    public function dsb_get_search_terms($post_id){
 		if ($post_id !== false && empty($this->search_terms[$post_id]))
         {
             $value                          = get_post_meta($post_id, 'dsb-search-terms', true);
@@ -146,8 +143,7 @@ class DSB_Seo_Builder
 	 *
 	 * @return array $locations	The list of locations
 	 */
-    public function dsb_get_ucfirst_placeholder($placeholder)
-    {
+    public function dsb_get_ucfirst_placeholder($placeholder){
         // ucfirst() does not work, as first character is the square bracket [search_term]
         // So let's change the second letter to uppercase
         
@@ -163,8 +159,7 @@ class DSB_Seo_Builder
 	 *
 	 * @return array $locations	The list of locations
 	 */
-    public function dsb_get_locations($post_id)
-    {
+    public function dsb_get_locations($post_id){
         if ($post_id !== false && empty($this->locations[$post_id]))
         {
             $value                  = get_post_meta($post_id, 'dsb-locations', true);
@@ -179,8 +174,7 @@ class DSB_Seo_Builder
 	 *
 	 * @return $search_terms	Array The list of locations
 	 */
-    public function dsb_get_seo_pages($post_status = 'publish')
-    {
+    public function dsb_get_seo_pages($post_status = 'publish'){
         if (empty($this->seo_pages))
         {
             $this->seo_pages = false;
@@ -203,8 +197,7 @@ class DSB_Seo_Builder
         return $this->seo_pages;
     }
 
-    public function dsb_get_slug_placeholder($post_id)
-    {
+    public function dsb_get_slug_placeholder($post_id){
         $slug_placeholder = get_post_meta($post_id, 'dsb-slug-placeholder', true);
     
         // We need something... so use a default as fallback
@@ -220,8 +213,7 @@ class DSB_Seo_Builder
         return strtolower($slug_placeholder);
     }
 
-    public function dsb_get_search_word_and_location_from_slug($post_id = false)
-    {
+    public function dsb_get_search_word_and_location_from_slug($post_id = false){
         $search_term_and_slug   = false;
         $lookup_table           = dsb_get_search_terms_and_locations_lookup_table($post_id);
 
@@ -367,8 +359,7 @@ class DSB_Seo_Builder
         return $search_term_and_slug;
     }
 
-    public function dsb_get_seo_page_slugs($post_id, $max_results = false)
-    {
+    public function dsb_get_seo_page_slugs($post_id, $max_results = false){
         $slugs        = false;//get_post_meta($post_id, 'dsb-slugs', true);
         $lookup_table = dsb_get_search_terms_and_locations_lookup_table($post_id);
 
@@ -390,8 +381,7 @@ class DSB_Seo_Builder
         return $slugs;
     }
 
-    public function dsb_get_lookup_table_slug_index()
-    {
+    public function dsb_get_lookup_table_slug_index(){
         // This means we did not try to find the index yet
         if ($this->lookup_table_slug_index === 0)
         {
@@ -415,8 +405,7 @@ class DSB_Seo_Builder
         return $this->lookup_table_slug_index;
     }
 
-    public function dsb_get_all_seo_pages_urls()
-    {
+    public function dsb_get_all_seo_pages_urls(){
         if (count($this->all_seo_pages_urls) < 1)
         {
             $seo_pages 	        = $this->dsb_get_seo_pages();
@@ -433,8 +422,7 @@ class DSB_Seo_Builder
     }
 
     // Return urls from all seo pages combined, defined by $length and $offset in the total list
-    public function dsb_get_seo_pages_urls($offset, $length)
-    {
+    public function dsb_get_seo_pages_urls($offset, $length){
         $seo_pages_urls = array();
 
         if (count($this->all_seo_pages_urls) < 1)
@@ -451,8 +439,7 @@ class DSB_Seo_Builder
     }
 
     // Return urls from a single seo page
-    public function dsb_get_seo_page_urls($post_name, $post_id, $max_results = false)
-    {
+    public function dsb_get_seo_page_urls($post_name, $post_id, $max_results = false){
         if (empty($this->seo_page_urls[$post_id]))
         {
             $this->seo_page_urls[$post_id]  = array();
@@ -476,8 +463,7 @@ class DSB_Seo_Builder
 	 *
 	 * @return $max_search_terms	int The max search terms
 	 */
-    public function dsb_get_max_search_terms()
-    {
+    public function dsb_get_max_search_terms(){
         return $this->max_search_terms;
     }
 
@@ -486,8 +472,7 @@ class DSB_Seo_Builder
 	 *
 	 * @return $max_locations	int The max locations
 	 */
-    public function dsb_get_max_locations()
-    {
+    public function dsb_get_max_locations(){
         return $this->max_locations;
     }
 
@@ -496,8 +481,7 @@ class DSB_Seo_Builder
 	 *
 	 * @return $max_locations	int The entries per sitemap page
 	 */
-    public function dsb_get_entries_per_sitemap_page()
-    {
+    public function dsb_get_entries_per_sitemap_page(){
         return $this->entries_per_sitemap_page;
     }
 
@@ -506,8 +490,7 @@ class DSB_Seo_Builder
 	 *
 	 * @return string The search term single placeholder
 	 */
-    public function get_search_term_single_placeholder()
-    {
+    public function get_search_term_single_placeholder(){
         return $this->search_term_single_placeholder;
     }
 
@@ -516,8 +499,7 @@ class DSB_Seo_Builder
 	 *
 	 * @return string The search term plural placeholder
 	 */
-    public function get_search_term_plural_placeholder()
-    {
+    public function get_search_term_plural_placeholder(){
         return $this->search_term_plural_placeholder;
     }
 
@@ -526,8 +508,7 @@ class DSB_Seo_Builder
 	 *
 	 * @return string The location single placeholder
 	 */
-    public function get_location_single_placeholder()
-    {
+    public function get_location_single_placeholder(){
         return $this->location_single_placeholder;
     }
 
@@ -536,8 +517,7 @@ class DSB_Seo_Builder
 	 *
 	 * @return string The location plural placeholder
 	 */
-    public function get_location_plural_placeholder()
-    {
+    public function get_location_plural_placeholder(){
         return $this->location_plural_placeholder;
     }
 
@@ -549,8 +529,7 @@ class DSB_Seo_Builder
 	 *
 	 * @return $result	bool If the string contains at least one or both placeholders
 	 */
-	public function has_any_placeholder($string, $check_both = false)
-	{
+	public function has_any_placeholder($string, $check_both = false){
         $result = true;
 
         if ($check_both)
