@@ -441,7 +441,7 @@ Our [search_terms] are the best [search_term] in [location]. Meet our team now!
 
 <h2>Get a haircut from one of our [search_terms] in [location]</h2>
 Donec ac tortor vitae purus cursus tempor. Duis non hendrerit augue, ut consectetur erat. Suspendisse [search_term], magna at lobortis pharetra, massa orci lacinia massa, non tempus turpis nisl nec libero. Sed sed enim lorem. Cras et orci sapien.
-<p style="text-align: center;"><a class="button button-primary" href="https://seobuilder.io/">Book now</a></p>
+<p style="text-align: center;"><a class="button button-primary" href="https://wpsprintplan.com/">Book now</a></p>
 
 <h2>Wide variety of [search_term] services in [location]</h2>
 Suspendisse fermentum lacus vitae tristique consectetur. Nunc luctus volutpat arcu, eu tempor odio pulvinar in. Sed urna nulla, finibus ut lorem [location], consectetur finibus orci.
@@ -452,7 +452,7 @@ Suspendisse fermentum lacus vitae tristique consectetur. Nunc luctus volutpat ar
 </ul>
 <h2>Book a [search_term] in [location]</h2>
 Nulla sagittis urna ultrices tortor viverra hendrerit. Phasellus sit amet luctus mauris, eu finibus mauris. Sed blandit nulla in diam porta, ac viverra arcu pretium. Nulla facilisi. Suspendisse ut nisl consequat, maximus enim ut, congue augue. Vivamus eget vehicula augue. Aenean eget ligula sed lacus mollis congue.
-<p style="text-align: center;"><a class="button button-primary" href="https://seobuilder.io/">Book now</a></p>';
+<p style="text-align: center;"><a class="button button-primary" href="https://wpsprintplan.com/">Book now</a></p>';
 
 
     $new_page_id    = wp_insert_post(array(

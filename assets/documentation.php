@@ -1,5 +1,5 @@
 <h2>Documentation</h2>
-<p>Please refer to our latest documentation at <a href="https://seobuilder.io/documentation/" target="_blank">seobuilder.io/documentation/</a></p>
+<p>Please refer to our latest documentation at <a href=" https://profiles.wordpress.org/iqbal1486/documentation/" target="_blank"> https://profiles.wordpress.org/iqbal1486/documentation/</a></p>
 <hr>
 <h2>Video tutorial</h2>
 <?php

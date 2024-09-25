@@ -425,7 +425,7 @@ msgstr "SEO Builder"
 
 #. Plugin URI of the plugin/theme
 #. Author URI of the plugin/theme
-msgid "https://seobuilder.io/"
+msgid "https://wpsprintplan.com/"
 msgstr "https://nowweb.nl/"
 
 #. Description of the plugin/theme
@@ -436,8 +436,8 @@ msgstr ""
 "locaties."
 
 #. Author of the plugin/theme
-msgid "seobuilder.io"
-msgstr "seobuilder.io"
+msgid "wpsprintplan.com"
+msgstr "wpsprintplan.com"
 
 #~ msgid "https://woosa.com/software/seo-builder-wordpress-plugin/"
 #~ msgstr "https://woosa.com/software/seo-builder-wordpress-plugin/"

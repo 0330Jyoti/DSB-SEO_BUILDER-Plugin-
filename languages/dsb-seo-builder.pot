@@ -396,7 +396,7 @@ msgstr ""
 
 #. Plugin URI of the plugin/theme
 #. Author URI of the plugin/theme
-msgid "https://seobuilder.io/"
+msgid "https://wpsprintplan.com/"
 msgstr ""
 
 #. Description of the plugin/theme
@@ -405,5 +405,5 @@ msgid ""
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "seobuilder.io"
+msgid "wpsprintplan.com"
 msgstr ""
