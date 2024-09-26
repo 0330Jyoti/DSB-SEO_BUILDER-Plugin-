@@ -45,39 +45,39 @@ function dsb_deactivate(){
 }
 
 function dsb_get_plugin_dir(){
-    $dsb_seo_generator_dir = plugin_dir_path(__FILE__);
-    return $dsb_seo_generator_dir;
+    $dsb_seo_builder_dir = plugin_dir_path(__FILE__);
+    return $dsb_seo_builder_dir;
 }
 
 function dsb_get_plugin_url(){
-    $dsb_seo_generator_url = plugins_url('dsb-seo-builder');
-    return $dsb_seo_generator_url;
+    $dsb_seo_builder_url = plugins_url('dsb-seo-builder');
+    return $dsb_seo_builder_url;
 }
 
 function dsb_get_plugin_basename(){
-    $dsb_seo_generator_basename = plugin_basename(__FILE__);
-    return $dsb_seo_generator_basename;
+    $dsb_seo_builder_basename = plugin_basename(__FILE__);
+    return $dsb_seo_builder_basename;
 }
 
-$dsb_seo_generator_dir = dsb_get_plugin_dir();
-$dsb_seo_generator_url = dsb_get_plugin_url();
+$dsb_seo_builder_dir = dsb_get_plugin_dir();
+$dsb_seo_builder_url = dsb_get_plugin_url();
 
-require_once "{$dsb_seo_generator_dir}includes/field-filters.php";
+require_once "{$dsb_seo_builder_dir}includes/field-filters.php";
 
-require_once "{$dsb_seo_generator_dir}includes/admin.php";
-require_once "{$dsb_seo_generator_dir}includes/content-filters.php";
-require_once "{$dsb_seo_generator_dir}includes/yoast-filters.php";
-require_once "{$dsb_seo_generator_dir}includes/rankmath-filters.php";
-require_once "{$dsb_seo_generator_dir}includes/custom-post-type.php";
-require_once "{$dsb_seo_generator_dir}includes/functions.php";
-require_once "{$dsb_seo_generator_dir}includes/url-rewrites.php";
+require_once "{$dsb_seo_builder_dir}includes/admin.php";
+require_once "{$dsb_seo_builder_dir}includes/content-filters.php";
+require_once "{$dsb_seo_builder_dir}includes/yoast-filters.php";
+require_once "{$dsb_seo_builder_dir}includes/rankmath-filters.php";
+require_once "{$dsb_seo_builder_dir}includes/custom-post-type.php";
+require_once "{$dsb_seo_builder_dir}includes/functions.php";
+require_once "{$dsb_seo_builder_dir}includes/url-rewrites.php";
 
-require_once "{$dsb_seo_generator_dir}includes/class.dsb-config.php";
-require_once "{$dsb_seo_generator_dir}includes/class.dsb-meta-block.php";
-require_once "{$dsb_seo_generator_dir}includes/class.dsb-meta-block-fields.php";
-require_once "{$dsb_seo_generator_dir}includes/class.dsb-spintax.php";
+require_once "{$dsb_seo_builder_dir}includes/class.dsb-config.php";
+require_once "{$dsb_seo_builder_dir}includes/class.dsb-meta-block.php";
+require_once "{$dsb_seo_builder_dir}includes/class.dsb-meta-block-fields.php";
+require_once "{$dsb_seo_builder_dir}includes/class.dsb-spintax.php";
 
-require_once "{$dsb_seo_generator_dir}includes/class.dsb.php";
-require_once "{$dsb_seo_generator_dir}includes/class.dsb-settings.php";
-require_once "{$dsb_seo_generator_dir}includes/class.dsb-documentation.php";
-require_once "{$dsb_seo_generator_dir}includes/dsb-meta-boxes.php";
+require_once "{$dsb_seo_builder_dir}includes/class.dsb.php";
+require_once "{$dsb_seo_builder_dir}includes/class.dsb-settings.php";
+require_once "{$dsb_seo_builder_dir}includes/class.dsb-documentation.php";
+require_once "{$dsb_seo_builder_dir}includes/dsb-meta-boxes.php";
