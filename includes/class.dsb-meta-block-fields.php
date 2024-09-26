@@ -207,8 +207,7 @@ class DSB_Meta_Field {
 }
 
 
-class DSB_Meta_Input_Field extends DSB_Meta_Field
-{
+class DSB_Meta_Input_Field extends DSB_Meta_Field {
 	public function show_field(){
         $attributes = $this->get_attributes(true);
         
@@ -220,8 +219,7 @@ class DSB_Meta_Input_Field extends DSB_Meta_Field
 }
 
 
-class DSB_Meta_Textarea_Field extends DSB_Meta_Field
-{
+class DSB_Meta_Textarea_Field extends DSB_Meta_Field {
 	
 	public function show_field(){        
         $attributes = $this->get_attributes(false);
@@ -242,8 +240,7 @@ class DSB_Meta_Textarea_Field extends DSB_Meta_Field
 }
 
 
-class DSB_Meta_HTML_Field extends DSB_Meta_Field
-{
+class DSB_Meta_HTML_Field extends DSB_Meta_Field {
 	
 	public function save() {}
 
@@ -264,8 +261,7 @@ class DSB_Meta_HTML_Field extends DSB_Meta_Field
 }
 
 
-class DSB_Meta_Radiobutton_Group_Field extends DSB_Meta_Field
-{   
+class DSB_Meta_Radiobutton_Group_Field extends DSB_Meta_Field {   
     public function show_field(){
         $field_id   = $this->get_id();
         

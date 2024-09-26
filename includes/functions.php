@@ -391,8 +391,8 @@ function dsb_plugin_settings_link($links){
 
 	return $links; 
 }
-$dsb_seo_generator_basename = dsb_get_plugin_basename();
-add_filter("plugin_action_links_{$dsb_seo_generator_basename}", 'dsb_plugin_settings_link');
+$dsb_seo_builder_basename = dsb_get_plugin_basename();
+add_filter("plugin_action_links_{$dsb_seo_builder_basename}", 'dsb_plugin_settings_link');
 
 function dsb_is_dsb_page(){
 	$is_dsb_page = false;

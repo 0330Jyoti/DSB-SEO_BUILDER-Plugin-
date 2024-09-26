@@ -3,14 +3,14 @@
 /**
  * Plugin Name:             DynamicSEO Builder
  * Plugin URI:              https://profiles.wordpress.org/iqbal1486/
- * Description:             Generate SEO landingpages based on different search terms and locations.
+ * Description:             Builder SEO landingpages based on different search terms and locations.
  * Version:                 1.0.0
  * Author:                  Wpsrintplan
  * Author URI:               https://profiles.wordpress.org/iqbal1486/
  * Text Domain:             dsb_seo_builder
  * Domain Path:             /languages
  * 
- * Copyright:               © 2024 wpsprintplan.com
+ * Copyright:               © 2024 seobuilder.io
  * License:                 GNU General Public License v3.0
  * License URI:             https://www.gnu.org/licenses/gpl-2.0.html
  */
