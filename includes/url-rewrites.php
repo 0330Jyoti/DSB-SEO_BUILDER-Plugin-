@@ -228,20 +228,20 @@ add_filter('post_type_link', 'dsb_remove_slug', 10, 3);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-function dsb_seo_generator_sitemap_xml_add_rewrite_rule(){
+function dsb_seo_builder_sitemap_xml_add_rewrite_rule(){
     add_rewrite_rule(
-        'seo_generator_sitemap_index.xml',
+        'seo_builder_sitemap_index.xml',
         'index.php?dsb_sitemap=dsb_show_sitemap_index',
         'top'
     );
 
     add_rewrite_rule(
-        'seo_generator_sitemap_([0-9]+)?\.xml',
+        'seo_builder_sitemap_([0-9]+)?\.xml',
         'index.php?dsb_sitemap=dsb_show_sitemap&dsb_sitemap_number=$matches[1]', 'top',
         'top'
     );
 }
-add_action( 'init', 'dsb_seo_generator_sitemap_xml_add_rewrite_rule' );
+add_action( 'init', 'dsb_seo_builder_sitemap_xml_add_rewrite_rule' );
 
 
 add_filter( 'pre_handle_404', 'dsb_pre_handle_404', 10, 1);
@@ -271,19 +271,19 @@ add_action('wp', 'dsb_template_redirect_sitemap');
 
 
 function dsb_show_sitemap_index(){
-    global $dsb_seo_generator_dir;
+    global $dsb_seo_builder_dir;
 
-    require_once "{$dsb_seo_generator_dir}/sitemap/sitemap-functions.php";
-    require_once "{$dsb_seo_generator_dir}/sitemap/xml-sitemap-index.php";
+    require_once "{$dsb_seo_builder_dir}/sitemap/sitemap-functions.php";
+    require_once "{$dsb_seo_builder_dir}/sitemap/xml-sitemap-index.php";
 
     exit;
 }
 
 function dsb_show_sitemap(){
-    global $dsb_seo_generator_dir;
+    global $dsb_seo_builder_dir;
 
-    require_once "{$dsb_seo_generator_dir}/sitemap/sitemap-functions.php";
-    require_once "{$dsb_seo_generator_dir}/sitemap/xml-sitemap.php";
+    require_once "{$dsb_seo_builder_dir}/sitemap/sitemap-functions.php";
+    require_once "{$dsb_seo_builder_dir}/sitemap/xml-sitemap.php";
 
     exit;
 }
@@ -294,11 +294,11 @@ function dsb_get_sitemap_url($current_page = false){
     if ($current_page !== false)
     {
         $current_page   = (int)$current_page;
-        $sitemap_url    = home_url() . "/seo_generator_sitemap_{$current_page}.xml";
+        $sitemap_url    = home_url() . "/seo_builder_sitemap_{$current_page}.xml";
     }
     else
     {
-        $sitemap_url = home_url() . '/seo_generator_sitemap_index.xml';
+        $sitemap_url = home_url() . '/seo_builder_sitemap_index.xml';
     }
 
     return $sitemap_url;
