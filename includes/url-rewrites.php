@@ -114,7 +114,7 @@ function dsb_rewrite_rules_array($rules){
     return $rules;
 }
 
-function dsb_template_include($template){
+function dsb_template_include($templates){
 
     if (is_singular())
     {
@@ -156,13 +156,13 @@ function dsb_template_include($template){
         }
     }
 
-    $template = apply_filters('dsb_template_include', $template);
+    $template = apply_filters('dsb_template_include', $templates);
     
 	return $template;
 }
 
 
-function dsb_template_include_archive($template){
+function dsb_template_include_archive($templates){
     if (is_singular())
     {
         $post = get_queried_object();
@@ -189,7 +189,7 @@ function dsb_template_include_archive($template){
         }
     }
 
-    $template = apply_filters('dsb_template_include_archive', $template);
+    $template = apply_filters('dsb_template_include_archive', $templates);
     
 	return $template;
 }
@@ -202,6 +202,18 @@ if (isset($_GET['et_fb']) && (int)$_GET['et_fb'] === 1)
 add_filter('template_include', 'dsb_template_include', 10, 1);
 add_filter('template_include', 'dsb_template_include_archive', $dsb_template_include_archive_priority, 1);
 
+
+function redirect_canonical_callbacks($redirect)
+{
+    $dsb_sitemap_query_var = get_query_var('dsb_sitemap', false);
+    if ($dsb_sitemap_query_var === 'dsb_show_sitemap_index' || $dsb_sitemap_query_var === 'dsb_show_sitemap')
+    {
+        return false;
+    }
+
+    return $redirect;
+}
+add_filter('redirect_canonical', 'redirect_canonical_callbacks', 100, 1);
 
 
 function dsb_remove_slug($post_link, $post, $leavename){
@@ -221,6 +233,20 @@ function dsb_remove_slug($post_link, $post, $leavename){
 }
 add_filter('post_type_link', 'dsb_remove_slug', 10, 3);
 
+// Change links added by the Wordpress menu
+function filter_wp_nav_menu_objects( $sorted_menu_items, $args)
+{ 
+    foreach ($sorted_menu_items as $item)
+    {
+        if ($item->object === 'dsb_seo_page' && strstr($item->url, '/dsb_seo_page/'))
+        {
+            $item->url = str_replace( '/dsb_seo_page/', '/', $item->url);
+        }
+    }
+
+    return $sorted_menu_items; 
+}; 
+add_filter( 'wp_nav_menu_objects', 'filter_wp_nav_menu_objects', 10, 2 ); 
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
